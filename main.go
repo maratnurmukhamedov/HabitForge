@@ -16,9 +16,23 @@ func main() {
 
 	fmt.Scan(&action)
 
-	fmt.Printf("You chose %d", action)
+	fmt.Printf("You chose %d\n", action)
 
 	//TODO - add the logic behind the actions
+	switch action {
+	case 1:
+		fmt.Println("Adding new habit")
+	case 2:
+		fmt.Println("Adding progress to the habit")
+	case 3:
+		fmt.Println(" Check all habits")
+	case 4:
+		fmt.Println(" Showing your longest streaks")
+	case 0:
+		fmt.Println("Quitting")
+	default:
+		fmt.Println("Incorrect input")
+	}
 }
 
 /*
