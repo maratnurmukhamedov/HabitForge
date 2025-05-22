@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
+
+var habits []Habit
 
 func main() {
 	fmt.Println("Welcome to HabitForge - your habit, your forge.")
@@ -22,10 +27,32 @@ func main() {
 	switch action {
 	case 1:
 		fmt.Println("Adding new habit")
+
+		var name string
+		var priority int
+
+		fmt.Print("Enter habit name: ")
+		fmt.Scan(&name)
+
+		fmt.Print("Enter priority (1-5): ")
+		fmt.Scan(&priority)
+
+		createdAt := time.Now().Format("2006-01-02") // make the realtime.
+		newHabit := NewHabit(name, priority, createdAt)
+		fmt.Println(newHabit)
+
+		habits = append(habits, newHabit)
+		fmt.Println("Habit added successfully!")
+
 	case 2:
 		fmt.Println("Adding progress to the habit")
 	case 3:
 		fmt.Println(" Check all habits")
+
+		fmt.Println("All habits:")
+		for i, h := range habits {
+			fmt.Printf("%d. %s (Priority: %d, Created: %s)\n", i+1, h.Name, h.Priority, h.CreatedAt)
+		}
 	case 4:
 		fmt.Println(" Showing your longest streaks")
 	case 0:
@@ -33,6 +60,7 @@ func main() {
 	default:
 		fmt.Println("Incorrect input")
 	}
+
 }
 
 /*
