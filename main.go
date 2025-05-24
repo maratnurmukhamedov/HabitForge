@@ -46,6 +46,24 @@ func main() {
 
 	case 2:
 		fmt.Println("Adding progress to the habit")
+		for i, h := range habits {
+			fmt.Printf("%d. %s\n", i+1, h.Name)
+		}
+
+		var choice int
+		fmt.Print("Enter habit number: ")
+		fmt.Scan(&choice)
+
+		if choice < 1 || choice > len(habits) {
+			fmt.Println("Invalid choice")
+			break
+		}
+
+		currentDate := time.Now().Format("2006-01-02")
+		habits[choice-1].Logs = append(habits[choice-1].Logs, currentDate)
+
+		fmt.Printf("Logged progress for \"%s\" on %s\n", habits[choice-1].Name, currentDate)
+
 	case 3:
 		fmt.Println(" Check all habits")
 
@@ -62,18 +80,3 @@ func main() {
 	}
 
 }
-
-/*
-=========================
-      HABITFORGE
-=========================
-
-Выбери действие:
-1. Добавить привычку
-2. Логировать выполнение
-3. Посмотреть все привычки
-4. Посмотреть streaks
-0. Выход
-
-Введите номер действия:
-*/
