@@ -10,6 +10,8 @@ var habits []Habit
 func main() {
 	fmt.Println("Welcome to HabitForge - your habit, your forge.")
 
+	habits = loadHabitsFromFile()
+
 	var action int
 
 	fmt.Println("Please choose your action - type number")
@@ -43,6 +45,7 @@ func main() {
 
 		habits = append(habits, newHabit)
 		fmt.Println("Habit added successfully!")
+		saveHabitsToFile(habits)
 
 	case 2:
 		fmt.Println("Adding progress to the habit")
